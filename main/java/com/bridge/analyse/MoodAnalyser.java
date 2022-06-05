@@ -18,10 +18,15 @@ public class MoodAnalyser {
 
     public String analyseMood() {
         final String sadMood = "SAD";
-        if (message.toUpperCase().contains(sadMood)) {
-            return sadMood;
+        try {
+            if (message.toUpperCase().contains(sadMood)) {
+                return sadMood;
+            }
+            return "Happy";
         }
-        return "Happy";
+        catch (Exception e) {
+            return "Happy";
+        }
 
     }
 }
