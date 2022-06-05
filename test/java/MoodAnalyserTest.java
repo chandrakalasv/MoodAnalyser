@@ -3,16 +3,17 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 public class MoodAnalyserTest {
+    MoodAnalyser obj = new MoodAnalyser();
     @Test
     public void givenMood_WhenSad_ShouldReturn_Sad() {
-        MoodAnalyser obj = new MoodAnalyser();
-        String mood = obj.analyseMood("i am in sad mood");
+        obj.setMessage("i am in sad mood");
+        String mood = obj.analyseMood();
         Assert.assertEquals("SAD", mood);
     }
     @Test
     public void givenMood_WhenAnyMood_ShouldReturn_Happy() {
-        MoodAnalyser obj = new MoodAnalyser();
-        String mood = obj.analyseMood("i am in any mood");
+        obj.setMessage("i am in any mood");
+        String mood = obj.analyseMood();
         Assert.assertEquals("Happy", mood);
     }
 }
