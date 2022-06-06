@@ -1,4 +1,7 @@
+
 import com.bridge.analyse.MoodAnalyser;
+import com.bridge.analyse.exception.ExceptionType;
+import com.bridge.analyse.exception.MoodAnalyserException;
 import junit.framework.Assert;
 import org.junit.Test;
 
@@ -17,9 +20,26 @@ public class MoodAnalyserTest {
         Assert.assertEquals("Happy", mood);
     }
     @Test
-    public void givenMood_WhenNull_ShouldReturn_Happy() {
-        obj.setMessage(null);
-        String mood = obj.analyseMood();
-        Assert.assertEquals("Happy", mood);
+    public void givenMood_WhenNullMood_ShouldReturn_Exception() {
+        try {
+            obj.setMessage(null);
+            obj.analyseMood();
+            //    Assert.assertEquals("Happy", mood);
+        } catch (MoodAnalyserException e) {
+            Assert.assertEquals(ExceptionType.Null, e.type);
+            System.out.println(e.getMessage() + " " +  e.type);
+        }
+        System.out.println("hi");
+    }
+
+    @Test
+    public void givenMood_WhenEmpty_ShouldReturn_CustomMoodAnalyserException() {
+        try {
+            obj.setMessage(" ");
+            obj.analyseMood();
+        }
+        catch(MoodAnalyserException ex) {
+           Assert.assertEquals(ExceptionType.Empty, ex.type);
+        }
     }
 }
